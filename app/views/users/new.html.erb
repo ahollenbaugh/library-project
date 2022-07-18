@@ -1,2 +1,36 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+<h1>Sign up</h1>
+<%= form_for(@user, :url => users_path, :method => 'post') do |f| %>
+  <table summary="New user form fields">
+    <tr>
+      <th>First name</th>
+      <td><%= f.text_field(:first_name) %></td>
+    </tr>
+    <tr>
+      <th>Last name</th>
+      <td><%= f.text_field(:last_name) %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= f.text_field(:email) %></td>
+    </tr>
+    <tr>
+      <th>State</th>
+      <td><%= f.text_field(:state) %></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td><%= f.text_field(:city) %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= f.text_field(:address) %></td>
+    </tr>
+    <tr>
+      <th>Phone number</th>
+      <td><%= f.text_field(:phone_number) %></td>
+    </tr>
+  </table>
+  <%= f.submit("Submit") %>
+<% end %>

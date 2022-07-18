@@ -6,6 +6,16 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to("/library/log_in")
+    else
+      render('new')
+    end
   end
 
   def edit
@@ -14,10 +24,10 @@ class UsersController < ApplicationController
   def delete
   end
 
-  def create
-  end
-
   def update
   end
-  
+
+  def destroy
+  end
+
 end

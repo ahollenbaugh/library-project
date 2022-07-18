@@ -1,37 +1,8 @@
 LibraryProject::Application.routes.draw do
-  get "admins/index"
+  resources :users
+  resources :books
+  resources :admins
 
-  get "admins/show"
-
-  get "admins/new"
-
-  get "admins/edit"
-
-  get "admins/delete"
-
-  get "books/index"
-
-  get "books/show"
-
-  get "books/new"
-
-  get "books/edit"
-
-  get "books/delete"
-
-  get "users/index"
-
-  get "users/show"
-
-  get "users/new"
-
-  get "users/edit"
-
-  get "users/delete"
-
-  # get "library/home"
-  # root "library#home"
-  # match "/", :to => "library#home", :via => get
   root :to => 'library#home'
 
   get 'library/get_books'
@@ -40,6 +11,36 @@ LibraryProject::Application.routes.draw do
   post 'library/log_in'
 
   get 'library/sign_up'
+
+  # get "admins/index"
+  #
+  # get "admins/show"
+  #
+  # get "admins/new"
+  #
+  # get "admins/edit"
+  #
+  # get "admins/delete"
+  #
+  # get "books/index"
+  #
+  # get "books/show"
+  #
+  # get "books/new"
+  #
+  # get "books/edit"
+  #
+  # get "books/delete"
+  #
+  # get "users/index"
+  #
+  # get "users/show"
+  #
+  # get "users/new"
+  #
+  # get "users/edit"
+  #
+  # get "users/delete"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
