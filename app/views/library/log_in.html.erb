@@ -1,0 +1,25 @@
+<h1>Log in</h1>
+<p>User login</p>
+<%= form_tag("get_books", :method => "get") do %>
+  <%= label_tag(:card_number, "Library card number:") %>
+  <br>
+  <%= text_field_tag(:card_number) %>
+  <br>
+  <%= label_tag(:pin, "PIN:") %>
+  <br>
+  <%= text_field_tag(:pin) %>
+  <br>
+  <%= submit_tag("Log in") %>
+<% end %>
+<p>Admin login</p>
+<%= form_tag("get_books", :method => "get") do %>
+  <%= label_tag(:username, "Username:") %>
+  <br>
+  <%= text_field_tag(:username) %>
+  <br>
+  <%= label_tag(:password, "Password:") %>
+  <br>
+  <%= text_field_tag(:password) %>
+  <br>
+  <%= submit_tag("Log in") %>
+<% end %>

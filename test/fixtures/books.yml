@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  available: false
+  date_time_avail: 2022-07-14 14:28:45
+  date_time_checked_out: 2022-07-14 14:28:45
+
+two:
+  title: MyString
+  available: false
+  date_time_avail: 2022-07-14 14:28:45
+  date_time_checked_out: 2022-07-14 14:28:45
