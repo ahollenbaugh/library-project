@@ -1,4 +1,34 @@
 LibraryProject::Application.routes.draw do
+  get "admins/index"
+
+  get "admins/show"
+
+  get "admins/new"
+
+  get "admins/edit"
+
+  get "admins/delete"
+
+  get "books/index"
+
+  get "books/show"
+
+  get "books/new"
+
+  get "books/edit"
+
+  get "books/delete"
+
+  get "users/index"
+
+  get "users/show"
+
+  get "users/new"
+
+  get "users/edit"
+
+  get "users/delete"
+
   # get "library/home"
   # root "library#home"
   # match "/", :to => "library#home", :via => get
