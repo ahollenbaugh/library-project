@@ -1,6 +1,6 @@
 <h1>Log in</h1>
 <p>User login</p>
-<%= form_tag("get_books", :method => "get") do %>
+<%= form_tag(books_path, :method => "get") do %>
   <%= label_tag(:card_number, "Library card number:") %>
   <br>
   <%= text_field_tag(:card_number) %>
