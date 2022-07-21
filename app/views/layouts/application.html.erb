@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<%= yield %>
+  <!-- Devise flash messages to alert user if something went wrong -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
 
 </body>
 </html>

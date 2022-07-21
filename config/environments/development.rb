@@ -34,4 +34,7 @@ LibraryProject::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Devise mailer settings in case we want to send email to our users.
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
