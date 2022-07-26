@@ -1,4 +1,6 @@
 LibraryProject::Application.routes.draw do
+  devise_for :registered_users
+
   devise_for :admins
 
   resources :users

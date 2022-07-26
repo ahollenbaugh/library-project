@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20220720212551) do
+ActiveRecord::Schema.define(:version => 20220725205828) do
 
   create_table "admins", :force => true do |t|
     t.string   "first_name"
@@ -45,18 +45,28 @@ ActiveRecord::Schema.define(:version => 20220720212551) do
     t.integer  "user"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "registered_users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
     t.string   "state"
     t.string   "city"
     t.string   "address"
     t.string   "phone_number"
-    t.string   "card_number"
-    t.string   "pin"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
+
+  add_index "registered_users", ["email"], :name => "index_registered_users_on_email", :unique => true
+  add_index "registered_users", ["reset_password_token"], :name => "index_registered_users_on_reset_password_token", :unique => true
 
 end
