@@ -1,5 +1,9 @@
 <h1>😎 CSUN Library 2.0 😎</h1>
 <p>Finally, a library for <i>cool</i> kids</p>
-<%= button_to "View books", books_path, method: "get"%>
-<%= button_to "Log in", "/library/log_in", method: "get"%>
-<%= button_to "Sign up", new_user_path, method: "get"%>
+<%= button_to "View Books", books_path, method: "get"%>
+<%= button_to "Admin Login", "/admins/sign_in", method: "get"%>
+<%= button_to "User Login", "/registered_users/sign_in", method: "get"%>
+<%= button_to "Register as Admin", "/admins/sign_up", method: "get"%>
+<%= button_to "Register", "/registered_users/sign_up", method: "get"%>
+<%= button_to "Log Out (Admin)", destroy_admin_session_path, method: :delete  %>
+<%= button_to "Log Out (User)", destroy_registered_user_session_path, method: :delete  %>
