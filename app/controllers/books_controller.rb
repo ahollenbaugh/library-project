@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   def index
     @books = Book.order
+    @cart = 0 # Later, you should probably get this info from database
   end
 
   def show
@@ -10,6 +11,9 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
+    # Update :registered_user
+    @book.update_attributes(:user => current_registered_user.id)
   end
 
   def delete
@@ -19,6 +23,10 @@ class BooksController < ApplicationController
   end
 
   def update
+  end
+
+  def add_to_cart
+    #
   end
 
 end
