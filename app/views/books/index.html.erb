@@ -1,5 +1,5 @@
 <h1>Catalog</h1>
-<p>Welcome to the eLibrary!</p>
+<p><%= link_to("<< Home", "/")%></p>
 <p>Cart: <%= @cart %></p>
 
 <table class="listing" summary="Book list">
@@ -15,7 +15,17 @@
       <td><%= book.title %></td>
       <td><%= book.available? %></td>
       <td><%= book.date_time_checked_out%></td>
-      <td><%= button_to("Add to Cart", { :action => "edit", :id => book.id }, :method => :get)%></td>
+      <td>
+        <% if book.available? %>
+          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :disabled => false})%>
+        <% else %>
+          <!-- The button only gets disabled once an Admin assists the RegisteredUser
+               in completing the checkout process. Just because it's in someone's
+               cart technically doesn't mean it's unavailable! This library
+               operates on a dibs-based checkout model. ;) -->
+          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :disabled => true})%>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </table>
