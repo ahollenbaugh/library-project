@@ -1,9 +1,65 @@
+<!-- Bootstrap navbar example below -->
+<%= nav_bar fixed: :top, brand: "Fashionable Clicheizr 2.0", responsive: true do %>
+    <%= menu_group do %>
+        <%= menu_item "Home"%>
+        <%= menu_divider %>
+        <%= drop_down "Products" do %>
+            <%= menu_item "Things you can't afford"%>
+            <%= menu_item "Things that won't suit you anyway"%>
+            <%= menu_item "Things you're not even cool enough to buy anyway"%>
+        <% end %>
+        <%= menu_item "About Us"%>
+        <%= menu_item "Contact"%>
+    <% end %>
+<% end %>
+
+<!-- Bootstrap modal example below -->
+<%= content_tag :a, "Modal", href: "#modal", class: 'btn', data: {toggle: 'modal'} %>
+
+<%= modal_dialog id: "modal",
+         header: { show_close: true, dismiss: 'modal', title: 'Modal header' },
+         body:   { content: 'This is the body' },
+         footer: { content: content_tag(:button, 'Save', class: 'btn') } %>
+
+<!-- Bootstrap badge example below -->
+<%= badge(12, :warning) %> <span class="badge badge-warning">12</span>
+
+<!-- Bootstrap label example below -->
+<%= tag_label('Gut!', :success) %> <span class="label label-success">Gut!</span>
+
+<!-- Bootstrap glyph example below -->
+<%= glyph(:pencil) %> <i class="icon-pencil"></i>
+
+<%= glyph(:pencil, {tag: :span}) %> <span class="icon-pencil"></span>
+
+<%= glyph(:pencil, {class: 'foo'}) %> <i class="icon-pencil foo"></i>
+
+
 <h1>😎 CSUN Library 2.0 😎</h1>
+
 <p>Finally, a library for <i>cool</i> kids</p>
-<%= button_to "View Books", "/books", method: "get"%>
-<%= button_to "Admin Login", "/admins/sign_in", method: "get"%>
-<%= button_to "User Login", "/registered_users/sign_in", method: "get"%>
-<%= button_to "Register as Admin", "/admins/sign_up", method: "get"%>
-<%= button_to "Register", "/registered_users/sign_up", method: "get"%>
-<%= button_to "Log Out (Admin)", destroy_admin_session_path, method: :delete  %>
-<%= button_to "Log Out (User)", destroy_registered_user_session_path, method: :delete  %>
+
+<%= button_to "View Catalog", "/books", method: "get"%>
+
+<br>
+
+<%= button_to("Log In", "/registered_users/sign_in", method: "get")%>
+
+<%= button_to("Register", "/registered_users/sign_up", method: "get")%>
+
+<br>
+
+<%= button_to "Log In (Admin)", "/admins/sign_in", method: "get"%>
+
+<%#= button_to "Register (Admin)", "/admins/sign_up", method: "get"%>
+
+<br>
+
+<% if current_registered_user%>
+  <%= button_to "Log Out (User)", destroy_registered_user_session_path, method: :delete  %>
+  <%= current_registered_user.email%>
+<% elsif current_admin%>
+  <%= button_to "View All Registered Users", registered_users_path, method: :get  %>
+  <%= button_to "Log Out (Admin)", destroy_admin_session_path, method: :delete  %>
+  <%= current_admin.email%>
+<% end %>

@@ -1,19 +1,33 @@
 LibraryProject::Application.routes.draw do
+  get "registered_users/index"
+
+  get "registered_users/show"
+
+  get "registered_users/new"
+
+  get "registered_users/edit"
+
+  get "registered_users/delete"
+
   root :to => 'library#home'
 
   devise_for :registered_users
   devise_for :admins
-
-  resources :users
-  resources :books
-  resources :admins
 
   get 'library/get_books'
   get 'library/log_in'
   post 'library/log_in'
   get 'library/sign_up'
 
-  post 'books/add_to_cart'
+  get 'books/add_to_cart'
+  get 'books/remove_from_cart'
+
+  resources :users
+  resources :books
+  resources :admins
+  resources :registered_users
+
+
 
   # get "admins/index"
   #

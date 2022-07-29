@@ -1,6 +1,5 @@
 <h1>Catalog</h1>
 <p><%= link_to("<< Home", "/")%></p>
-<p>Cart: <%= @cart %></p>
 
 <table class="listing" summary="Book list">
     <tr class="header">
@@ -24,6 +23,13 @@
                cart technically doesn't mean it's unavailable! This library
                operates on a dibs-based checkout model. ;) -->
           <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :disabled => true})%>
+        <% end %>
+      </td>
+      <td>
+        <% if current_admin %>
+          <% if !book.available? %>
+            <%= link_to("User Details", registered_user_path(book), :class => 'action show') %>
+          <% end %>
         <% end %>
       </td>
     </tr>

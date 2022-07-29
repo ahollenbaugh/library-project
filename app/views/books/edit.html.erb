@@ -1,3 +1,24 @@
-<h1>Cart</h1>
+<h1>Your Cart</h1>
 <p><%= @message %></p>
+<% if current_registered_user%>
+  <% if @cart_books != []%>
+    <table>
+      <tr class="header">
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+      <% @cart_books.each do |cart_book| %>
+      <tr>
+        <td><%= cart_book.id %></td>
+        <td><%= cart_book.title %></td>
+        <td><%= button_to("Remove from Cart", {:action => "remove_from_cart", :id => cart_book.id}, {:method => :get})%></td>
+      </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>Your cart is empty.</p>
+  <% end %>
+<% end %>
+
+
 <p><%= link_to("<< Back to Catalog", books_path)%></p>

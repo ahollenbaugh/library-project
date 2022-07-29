@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
   def index
     @books = Book.order
-    @cart = 0 # Later, you should probably get this info from database
   end
 
   def show
@@ -19,12 +18,12 @@ class BooksController < ApplicationController
         if @book.user == current_registered_user.id
           @message = "This book is already in your cart."
         else
-          @message = "This book is already in someone else's cart."
+          @book.update_attributes(:user => current_registered_user.id)
+          @message = @book.title + " was successfully added to your cart."
         end
-      else
-        @book.update_attributes(:user => current_registered_user.id)
-        @message = @book.title + " was successfully added to your cart."
       end
+      # Get all books in cart
+      @cart_books = Book.where(user: current_registered_user.id)
     end
   end
 
@@ -38,7 +37,13 @@ class BooksController < ApplicationController
   end
 
   def add_to_cart
-    #
+
   end
 
+  def remove_from_cart
+    @book = Book.find(params[:id])
+    @book.update_attributes(:user => nil)
+    @message = @book.title + " has been removed from your cart."
+    render(edit_book_path(params[:id]))
+  end
 end

@@ -1,5 +1,6 @@
 class LibraryController < ApplicationController
   def home
+    
   end
 
   def get_books
