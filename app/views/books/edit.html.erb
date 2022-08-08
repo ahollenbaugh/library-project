@@ -1,24 +1,28 @@
-<h1>Your Cart</h1>
-<p><%= @message %></p>
+<%= render "/navbar" %>
+<h1 class="text-center"><%= @message %></h1>
 <% if current_registered_user%>
-  <% if @cart_books != []%>
-    <table>
-      <tr class="header">
-        <th>ID</th>
-        <th>Title</th>
-      </tr>
-      <% @cart_books.each do |cart_book| %>
-      <tr>
-        <td><%= cart_book.id %></td>
-        <td><%= cart_book.title %></td>
-        <td><%= button_to("Remove from Cart", {:action => "remove_from_cart", :id => cart_book.id}, {:method => :get})%></td>
-      </tr>
-      <% end %>
+  <h1 class="text-center">Your Cart</h1>
+  <% if @cart_books%>
+    <table class="table table-striped">
+      <thead>
+        <tr class="header">
+          <th>ID</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_books.each do |cart_book| %>
+        <% if cart_book.date_time_checked_out == nil %>
+          <tr>
+            <td><%= cart_book.id %></td>
+            <td><%= cart_book.title %></td>
+            <td><%= button_to("Remove from Cart", "/books/remove_from_cart/" + cart_book.id.to_s, :method => :get) %></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </tbody>
     </table>
   <% else %>
     <p>Your cart is empty.</p>
   <% end %>
 <% end %>
-
-
-<p><%= link_to("<< Back to Catalog", books_path)%></p>

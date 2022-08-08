@@ -1,37 +1,52 @@
-<h1>Catalog</h1>
-<p><%= link_to("<< Home", "/")%></p>
+<%= render "/navbar" %>
+<h1 class="text-center">😎 Welcome to the CSUN Library 2.0 😎</h1>
+<p class="text-center">Finally, a library for <i>cool</i> kids</p>
 
-<table class="listing" summary="Book list">
-    <tr class="header">
-      <th>ID</th>
-      <th>Title</th>
-      <th>Available</th>
-      <th>Checked Out</th>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Available?</th>
+      <th scope="col">Checked Out At</th>
+      <th scope="col">Available At</th>
+      <% if current_registered_user && current_registered_user.role == 1 %>
+        <th scope="col">Checked Out By</th>
+      <% end %>
     </tr>
+  </thead>
+  <tbody>
     <% @books.each do |book| %>
     <tr>
       <td><%= book.id %></td>
       <td><%= book.title %></td>
-      <td><%= book.available? %></td>
-      <td><%= book.date_time_checked_out%></td>
       <td>
         <% if book.available? %>
-          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :disabled => false})%>
+          <%= tag_label('Available!', :success) %>
         <% else %>
-          <!-- The button only gets disabled once an Admin assists the RegisteredUser
-               in completing the checkout process. Just because it's in someone's
-               cart technically doesn't mean it's unavailable! This library
-               operates on a dibs-based checkout model. ;) -->
-          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :disabled => true})%>
+          <%= tag_label('Unavailable', :danger) %>
+        <% end %>
+      </td>
+      <td><%= book.date_time_checked_out%></td>
+      <td><%= book.date_time_avail %></td>
+      <td>
+        <% if current_registered_user && current_registered_user.role == 1 %>
+          <% if !book.available? %>
+            <%=
+            @user = RegisteredUser.find(book.user)
+            link_to(@user.card_number, registered_user_path(@user.id), :class => 'action show', params: {mode: "view"})
+            %>
+          <% end %>
         <% end %>
       </td>
       <td>
-        <% if current_admin %>
-          <% if !book.available? %>
-            <%= link_to("User Details", registered_user_path(book), :class => 'action show') %>
-          <% end %>
+        <% if book.available? %>
+          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :class => 'btn btn-primary btn-sm'})%>
+        <% else %>
+          <%= button_to("Add to Cart", { :action => "edit", :id => book.id}, {:method => :get, :class => 'btn btn-primary btn-sm disabled'})%>
         <% end %>
       </td>
     </tr>
     <% end %>
-  </table>
+  </tbody>
+</table>

@@ -1,22 +1,53 @@
-<h1>RegisteredUsers#show</h1>
-<p>Find me in app/views/registered_users/show.html.erb</p>
-<table>
-  <tr class="header">
-    <td>First Name</td>
-    <td>Last Name</td>
-    <td>Email</td>
-    <td>Phone Number</td>
-    <td>Address</td>
-    <td>City</td>
-    <td>State</td>
-  </tr>
-  <tr>
-    <td><%= @registered_user.first_name%></td>
-    <td><%= @registered_user.last_name%></td>
-    <td><%= @registered_user.email%></td>
-    <td><%= @registered_user.phone_number%></td>
-    <td><%= @registered_user.address%></td>
-    <td><%= @registered_user.city%></td>
-    <td><%= @registered_user.state%></td>
-  </tr>
+<%= render "/navbar" %>
+
+<h2>User Details</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Card Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @registered_user.first_name%></td>
+      <td><%= @registered_user.last_name%></td>
+      <td><%= @registered_user.email%></td>
+      <td><%= @registered_user.phone_number%></td>
+      <td><%= @registered_user.address%></td>
+      <td><%= @registered_user.city%></td>
+      <td><%= @registered_user.state%></td>
+      <td><%= @registered_user.card_number%></td>
+    </tr>
+  </tbody>
 </table>
+
+<% if @books %>
+<h2>Books Checked Out</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Checked Out At</th>
+        <th scope="col">Available At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.date_time_checked_out %></td>
+          <td><%= book.date_time_avail %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>This user does not have any books in their cart.</h2>
+<% end %>

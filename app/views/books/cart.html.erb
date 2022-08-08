@@ -1,0 +1,21 @@
+<%= render "/navbar" %>
+<h1 class="text-center">Your Cart</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_books.each do |book| %>
+      <% if book.date_time_checked_out == nil %>
+        <tr>
+          <td><%= book.id %></td>
+          <td><%= book.title %></td>
+          <td><%= button_to("Remove from Cart", "/books/remove_from_cart/" + book.id.to_s, :method => :get) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

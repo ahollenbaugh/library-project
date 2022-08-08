@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+ body{
+   text-align: center;
+ }
+
+ form {
+   text-align: center;
+ }
+
+ table{
+   text-align: left;
+ }
+
+ /* Classes */
+
+ .devise-link{
+   text-align: center;
+ }

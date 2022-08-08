@@ -1,17 +1,27 @@
 LibraryProject::Application.routes.draw do
-  get "registered_users/index"
+  # get "registered_users/index"
+  #
+  # get "registered_users/show"
+  #
+  # get "registered_users/new"
+  #
+  # get "registered_users/edit"
+  #
+  # get "registered_users/delete"
+  #
+  get "registered_users/checkout_books"
+  get "registered_users/return_books"
 
-  get "registered_users/show"
+  root :to => 'books#index'
 
-  get "registered_users/new"
-
-  get "registered_users/edit"
-
-  get "registered_users/delete"
-
-  root :to => 'library#home'
-
-  devise_for :registered_users
+  devise_for :registered_users, controllers: {
+    confirmations: 'registered_users/confirmations',
+    omniauth_callbacks: 'registered_users/omniauth_callbacks',
+    passwords: 'registered_users/passwords',
+    registrations: 'registered_users/registrations',
+    sessions: 'registered_users/sessions',
+    unlocks: 'registered_users/unlocks'
+  }
   devise_for :admins
 
   get 'library/get_books'
@@ -19,8 +29,12 @@ LibraryProject::Application.routes.draw do
   post 'library/log_in'
   get 'library/sign_up'
 
-  get 'books/add_to_cart'
-  get 'books/remove_from_cart'
+  get 'books/cart'
+  get 'books/remove_from_cart/:id', to: 'books#remove_from_cart'
+  get 'books/checkout_books'
+  get 'books/return_books'
+  get 'books/get_user'
+  get 'books/change_status'
 
   resources :users
   resources :books

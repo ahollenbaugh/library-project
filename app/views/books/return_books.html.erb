@@ -1,0 +1,9 @@
+<%= render "/navbar" %>
+<h1 class="text-center">Return</h1>
+<p>Enter library card number here</p>
+
+<%= form_tag("/registered_users/return_books", method: "get") do %>
+  <%= label_tag(:card, "Search for:") %>
+  <%= text_field_tag(:card) %>
+  <%= submit_tag("Search") %>
+<% end %>
