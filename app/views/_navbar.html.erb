@@ -5,7 +5,7 @@
 
         <% if current_registered_user %>
 
-          <% if current_registered_user.role == 1 %>
+          <% if can? :manage, :all %> <!-- cancan speak for "if admin" -->
             <%= drop_down "Admin" do %>
                 <%= menu_item "View All Registered Users", registered_users_path, method: :get%>
                 <%= menu_item "Process Checkout", '/books/checkout_books', method: :get%>
@@ -26,9 +26,7 @@
     <%= menu_group pull: :right do %>
       <% if current_registered_user %>
         <%= menu_text current_registered_user.email %>
-        <% if current_registered_user.role == 2 %>
-          <%= menu_text("Your library card number is " + current_registered_user.card_number) %>
-        <% end %>
+        <%= menu_text("Your library card number is " + current_registered_user.card_number) %>
       <% end %>
     <% end %>
 <% end %>

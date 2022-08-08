@@ -30,12 +30,14 @@
       <td><%= book.date_time_checked_out%></td>
       <td><%= book.date_time_avail %></td>
       <td>
-        <% if current_registered_user && current_registered_user.role == 1 %>
-          <% if !book.available? %>
-            <%=
-            @user = RegisteredUser.find(book.user)
-            link_to(@user.card_number, registered_user_path(@user.id), :class => 'action show', params: {mode: "view"})
-            %>
+        <% if current_registered_user %>
+          <% if can? :manage, :all %>
+            <% if !book.available? %>
+              <%=
+              @user = RegisteredUser.find(book.user)
+              link_to(@user.card_number, registered_user_path(@user.id), :class => 'action show', params: {mode: "view"})
+              %>
+            <% end %>
           <% end %>
         <% end %>
       </td>
