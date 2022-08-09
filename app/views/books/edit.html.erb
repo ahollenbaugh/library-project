@@ -22,6 +22,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= button_to "Reserve book(s)", "/books/reserve", method: :get %>
   <% else %>
     <p>Your cart is empty.</p>
   <% end %>

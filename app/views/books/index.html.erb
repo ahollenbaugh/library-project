@@ -32,7 +32,7 @@
       <td>
         <% if current_registered_user %>
           <% if can? :manage, :all %>
-            <% if !book.available? %>
+            <% if !book.available?  && book.date_time_checked_out != nil %>
               <%=
               @user = RegisteredUser.find(book.user)
               link_to(@user.card_number, registered_user_path(@user.id), :class => 'action show', params: {mode: "view"})

@@ -68,7 +68,7 @@ class RegisteredUsersController < ApplicationController
     @books.each do |book|
       book.update_attributes(:available => false, :date_time_checked_out => checkout_time, :date_time_avail => return_time)
     end
-    @success_message = "Books checked out successfully."
+    @success_message = "Books checked out successfully." 
   end
 
   def return_books

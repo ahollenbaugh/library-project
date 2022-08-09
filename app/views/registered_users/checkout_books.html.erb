@@ -1,2 +1,26 @@
 <%= render "/navbar" %>
-<%= @success_message %>
+<h1><%= @success_message %></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Checked Out At</th>
+      <th scope="col">Available At</th>
+      <% if current_registered_user && current_registered_user.role == 1 %>
+        <th scope="col">Checked Out By</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.title %></td>
+        <td><%= book.date_time_checked_out %></td>
+        <td><%= book.date_time_avail %></td>
+        <td><%= link_to(@user.card_number, registered_user_path(@user.id), :class => 'action show', params: {mode: "view"}) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

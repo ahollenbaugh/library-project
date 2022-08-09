@@ -35,6 +35,7 @@ LibraryProject::Application.routes.draw do
   get 'books/return_books'
   get 'books/get_user'
   get 'books/change_status'
+  get 'books/reserve'
 
   resources :users
   resources :books

@@ -61,4 +61,12 @@ class BooksController < ApplicationController
 
   def change_status
   end
+
+  def reserve
+    @cart_books = Book.where(user: current_registered_user.id)
+    @cart_books.each do |book|
+      book.update_attributes(reserved: true, reservation_window_ends: DateTime.now + 1, available: false)
+    end
+    @success_message = "Book(s) reserved successfully. Please bring your library card to the front desk when picking up your book(s)."
+  end
 end
